@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Заняття 5. Об'єкт Date. Гра "Вгадай число на швидкість"</h1>
+
+    <script>
+        function plainGame(){
+            let attemps = 0;
+            let game = true;
+
+            const startTime = new Date();
+
+
+            const min_numb = 1;
+            const max_numb = 10;
+            const randomNumder = Math.floor(Math.random() * (max_numb-min_numb + 1) + min_numb);
+            while(game) {
+                const currentTime = new Date();
+                const timeElapsed = (currentTime -startTime) / 1000 ;
+
+                const guess = prompt(`Угодай число от ${min_numb} до ${max_numb} (У вас есть 10 секунд):`);
+                
+                attemps++;
+                if (Number(guess) === randomNumder) {
+                    alert(`Поздровляю! Вы угодали число ${randomNumder} за ${attemps} попыт. ${timeElapsed}sec`);
+                    game = false;
+                } else if (Number(guess) < randomNumder) {
+                    alert("Слишком мало! Введите ещё");
+                } else{
+                    alert("Слишком много! Введите ещё");
+                }
+
+                // game = confirm("Again?")
+            }
+        }
+
+        do{
+            plainGame();
+            game = confirm("Again?");
+        }while(game);
+        plainGame();
+    </script>
+</body>
+</html>
